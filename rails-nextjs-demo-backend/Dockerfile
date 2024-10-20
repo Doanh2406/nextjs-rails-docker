@@ -1,4 +1,4 @@
-FROM ruby:2.6.4
+FROM ruby:3.2.0
 
 RUN apt-get update
 RUN apt-get install -y vim
@@ -8,7 +8,8 @@ RUN mkdir $APP
 WORKDIR $APP
 
 COPY Gemfile* $APP/
-RUN bundle install -j3 --path vendor/bundle 
+RUN bundle update --bundler
+RUN bundle install -j3 --path vendor/bundle
 
 COPY . $APP/
 
